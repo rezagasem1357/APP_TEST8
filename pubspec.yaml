@@ -1,0 +1,36 @@
+name: object_counter_app
+description: "Professional AI Object Counter App in Flutter"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # مدیریت دوربین و گالری (نسخه‌های به‌روز و سازگار با Android Embedding v2)
+  camera: ^0.11.0
+  image_picker: ^1.1.2
+  
+  # اجرای مدل هوش مصنوعی TFLite (سازگار با Dart 3+)
+  tflite_flutter: ^0.11.0
+  
+  # پردازش و تغییر اندازه تصویر
+  image: ^4.2.0
+  
+  # مدیریت مجوزهای دسترسی
+  permission_handler: ^12.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  # تعاریف پوشه‌های اسست
+  assets:
+    - assets/models/
