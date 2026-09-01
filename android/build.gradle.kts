@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 allprojects {
     repositories {
         google()
@@ -17,18 +20,11 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
-// همگام‌سازی اجباری JVM Target روی 11 برای کامپایلرهای جاوا و کاتلین در تمام زیرپروژه‌ها
+// همگام‌سازی اجباری JVM روی 11 با استاندارد جدید compilerOptions برای تمام زیرپروژه‌ها
 subprojects {
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
-    
-    plugins.withId("java") {
-        extensions.configure<JavaPluginExtension> {
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
+    tasks.withType<KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
         }
     }
 }
