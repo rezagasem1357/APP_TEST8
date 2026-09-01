@@ -4,24 +4,24 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   
   # مدیریت دوربین و گالری
-  camera: ^0.11.0
-  image_picker: ^1.1.2
+  camera: ^0.10.5+9
+  image_picker: ^1.0.7
   
-  # اجرای مدل هوش مصنوعی TFLite (نسخه به‌روز جهت حل مشکل Namespace)
-  tflite_flutter: ^0.12.0
+  # اجرای مدل TFLite سازگار با دارت 3.3
+  tflite_flutter: ^0.10.4
   
   # پردازش تصویر
-  image: ^4.2.0
+  image: ^4.1.7
   
-  # مدیریت دسترسی‌ها
-  permission_handler: ^12.0.0
+  # مدیریت دسترسی‌ها سازگار با دارت 3.3
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +31,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # تعاریف اسست‌ها و مدل TFLite
   assets:
     - assets/models/
