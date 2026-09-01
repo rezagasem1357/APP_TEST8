@@ -5,27 +5,30 @@ allprojects {
     }
 }
 
-rootProject.buildDir = '../build'
+val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
+rootProject.layout.buildDirectory.value(newBuildDir)
+
 subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
+    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
+    project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
 
-// حل مشکل تداخل Namespace ماژول‌های پکیج tflite و سایر کتابخانه‌ها
 subprojects {
-    afterEvaluate { project ->
-        if (project.hasProperty('android')) {
-            project.android {
-                if (namespace == null) {
-                    namespace project.group
-                }
+    project.evaluationDependsOn(":app")
+}
+
+// حل مشکل Namespace ماژول‌های tflite در Kotlin DSL
+subprojects {
+    afterEvaluate {
+        if (extra.has("android")) {
+            val android = extra.get("android") as? com.android.build.gradle.BaseExtension
+            if (android != null && android.namespace == null) {
+                android.namespace = project.group.toString()
             }
         }
     }
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
 }
