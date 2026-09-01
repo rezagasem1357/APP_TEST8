@@ -17,12 +17,16 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
-// حل مشکل تداخل Namespace ماژول‌های tflite در Kotlin DSL
+// حل ریشه‌ای تداخل Namespace تمام پروژه‌های فرعی و AARها
 subprojects {
-    plugins.withId("com.android.library") {
-        val android = extensions.findByType(com.android.build.gradle.LibraryExtension::class.java)
-        if (android != null && android.namespace == null) {
-            android.namespace = project.group.toString().ifEmpty { "com.fix.namespace.${project.name}" }
+    afterEvaluate {
+        if (plugins.hasPlugin("com.android.library") || plugins.hasPlugin("com.android.application")) {
+            val androidExtension = extensions.findByName("android")
+            if (androidExtension is com.android.build.gradle.BaseExtension) {
+                if (androidExtension.namespace == null) {
+                    androidExtension.namespace = "com.build.fix." + project.name.replace("-", "_")
+                }
+            }
         }
     }
 }
