@@ -16,10 +16,11 @@ if (localPropertiesFile.exists()) {
 val flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "1"
 val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
 
-// استفاده از ApplicationExtension جدید به جای متد منسوخ شده قبلی
 configure<ApplicationExtension> {
     namespace = "com.example.object_counter_app"
-    compileSdk = 34
+    
+    // ارتقا به SDK 36 جهت رفع نیاز پکیج‌های دوربین و گالری
+    compileSdk = 36
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -29,7 +30,7 @@ configure<ApplicationExtension> {
     defaultConfig {
         applicationId = "com.example.object_counter_app"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 36
         versionCode = flutterVersionCode.toInt()
         versionName = flutterVersionName
     }
@@ -41,7 +42,6 @@ configure<ApplicationExtension> {
     }
 }
 
-// جایگزین جدید kotlinOptions برای جلوگیری از ارور jvmTarget
 kotlin {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
