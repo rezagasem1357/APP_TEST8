@@ -27,8 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
-        <!-- الزامی جهت Migration به Android Embedding V2 -->
+
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
