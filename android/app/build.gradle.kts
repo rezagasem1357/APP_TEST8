@@ -18,8 +18,6 @@ val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "
 
 configure<ApplicationExtension> {
     namespace = "com.example.object_counter_app"
-    
-    // ارتقا به SDK 36 جهت رفع نیاز پکیج‌های دوربین و گالری
     compileSdk = 36
 
     compileOptions {
@@ -38,6 +36,13 @@ configure<ApplicationExtension> {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    // حل تداخل Manifest Merger برای TensorFlow Lite
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
