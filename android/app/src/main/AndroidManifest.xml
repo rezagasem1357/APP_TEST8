@@ -1,18 +1,13 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- مجوزهای دسترسی به دوربین و حافظه/گالری -->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:label="Object Counter"
+        android:label="object_counter_app"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
-        tools:replace="android:label">
-
+        android:icon="@mipmap/ic_launcher">
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -33,7 +28,7 @@
             </intent-filter>
         </activity>
         
-        <!-- فعال‌سازی Android Embedding V2 -->
+        <!-- الزامی جهت Migration به Android Embedding V2 -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
