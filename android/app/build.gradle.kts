@@ -21,8 +21,8 @@ configure<ApplicationExtension> {
     compileSdk = 36
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     defaultConfig {
@@ -37,13 +37,6 @@ configure<ApplicationExtension> {
         release {
             signingConfig = signingConfigs.getByName("debug")
         }
-    }
-}
-
-// همگام‌سازی JVM Target برای تمامی کامپایلرهای جاوا و کاتلین
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
     }
 }
 
