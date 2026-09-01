@@ -10,17 +10,17 @@ dependencies:
   flutter:
     sdk: flutter
   
-  # مدیریت دوربین و گالری (نسخه‌های به‌روز و سازگار با Android Embedding v2)
+  # مدیریت دوربین و گالری
   camera: ^0.11.0
   image_picker: ^1.1.2
   
-  # اجرای مدل هوش مصنوعی TFLite (سازگار با Dart 3+)
-  tflite_flutter: ^0.11.0
+  # اجرای مدل هوش مصنوعی TFLite (نسخه به‌روز جهت حل مشکل Namespace)
+  tflite_flutter: ^0.12.0
   
-  # پردازش و تغییر اندازه تصویر
+  # پردازش تصویر
   image: ^4.2.0
   
-  # مدیریت مجوزهای دسترسی
+  # مدیریت دسترسی‌ها
   permission_handler: ^12.0.0
 
 dev_dependencies:
@@ -31,6 +31,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # تعاریف پوشه‌های اسست
+  # تعاریف اسست‌ها و مدل TFLite
   assets:
     - assets/models/
