@@ -17,6 +17,22 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// همگام‌سازی اجباری JVM Target روی 11 برای کامپایلرهای جاوا و کاتلین در تمام زیرپروژه‌ها
+subprojects {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = "11"
+        }
+    }
+    
+    plugins.withId("java") {
+        extensions.configure<JavaPluginExtension> {
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
+        }
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
