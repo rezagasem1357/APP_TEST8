@@ -1,13 +1,12 @@
 import java.util.Properties
+import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // پلاگین رسمی فلاتر
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// خواندن اطلاعات local.properties در صورت وجود
 val localProperties = Properties()
 val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
@@ -17,18 +16,14 @@ if (localPropertiesFile.exists()) {
 val flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "1"
 val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
 
-android {
-    // تعیین دقیق Namespace برای جلوگیری از تداخل
+// استفاده از ApplicationExtension جدید به جای متد منسوخ شده قبلی
+configure<ApplicationExtension> {
     namespace = "com.example.object_counter_app"
     compileSdk = 34
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     defaultConfig {
@@ -41,9 +36,15 @@ android {
 
     buildTypes {
         release {
-            // استفاده از Debug Signing جهت ایجاد خروجی تست ریلیز بدون کلید اختصاصی
             signingConfig = signingConfigs.getByName("debug")
         }
+    }
+}
+
+// جایگزین جدید kotlinOptions برای جلوگیری از ارور jvmTarget
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
     }
 }
 
